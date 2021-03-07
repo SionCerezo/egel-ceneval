@@ -17,7 +17,7 @@ class CreateConvocatoriasTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->mediumText('descripcion')->nullable();
-            $table->morphs('user');
+            $table->morphs('create_user');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
 
