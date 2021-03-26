@@ -1,0 +1,5 @@
+Instalacion de laravel UI
+    -> composer require laravel/ui
+Generacion de autenticacion de laravel UI
+    -> php artisan ui bootstrap --auth
+        * <bootstrap> indica que se trabajar con el framwork de Bootstrap
