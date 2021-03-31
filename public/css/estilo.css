@@ -1,0 +1,13 @@
+.login-cuerpo{
+    height: 500px;
+    background-color: white;
+}
+
+.pie-pag{
+    height: 200px;
+    background-color: blue;
+}
+
+li{
+  list-style: none;  
+}
