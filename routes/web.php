@@ -23,3 +23,7 @@ Route::get('/home', function () {
 Route::get('/layout', function () {
     return view('master');
 });
+
+Route::get('/registro',function(){
+    return view('registro');
+});

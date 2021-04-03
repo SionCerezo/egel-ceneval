@@ -11,7 +11,7 @@
 </head>
 <body>
     @yield('content')
-
+    <footer class="page-footer">
     <div class="d-flex justify-content-around align-items-center pie-pag fixed-bottom">
         <div>
             <img src="{{ asset('images/logoBUAP.png') }}" class="rounded float-left img-fluid" height="150px" width="150px" alt="logoBUAP">
@@ -27,6 +27,7 @@
             <img src="{{ asset('images/logoFCC.png') }}" class="rounded float-right img-fluid " height="170px" width="175px" alt="logoFCC">
         </div>
     </div>
+    </footer>
     <script src="{{ asset('template/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script> 
 </body>
 </html>
