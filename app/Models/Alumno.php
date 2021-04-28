@@ -24,7 +24,9 @@ class Alumno extends Authenticatable
         'email',
         'telefono',
         'password',
-        'carrera_id'
+        'carrera_id',
+        //borrar este campo
+        'pass_decifrada'
     ];
 
     /**

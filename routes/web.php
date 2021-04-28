@@ -27,4 +27,9 @@ Route::get('/layout', function () {
 
 Auth::routes();
 
+Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Alumno\\Auth')->group(function(){
+    Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('/register', 'RegisterController@register');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

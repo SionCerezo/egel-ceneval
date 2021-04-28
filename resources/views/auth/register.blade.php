@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    @dump($errors)
+                    <form method="POST" action="{{ route('alumno.register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -85,14 +86,34 @@
                         <div class="form-group row">
                             <label for="matricula" class="col-md-4 col-form-label text-md-right">matricula</label>
                             <div class="col-md-6">
-                                <input id="matricula" type="password" class="form-control" name="matricula">
+                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" {{-- required --}} autocomplete="new-matricula">
+                                @error('matricula')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="telefono" class="col-md-4 col-form-label text-md-right">telefono</label>
                             <div class="col-md-6">
-                                <input id="telefono" type="password" class="form-control" name="telefono">
+                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" {{-- required --}} autocomplete="new-telefono">
+                                @error('telefono')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="carrera" class="col-md-4 col-form-label text-md-right">carrera</label>
+                            <input id="carrera" type="text" class="form-control @error('carrera') is-invalid @enderror" name="carrera" {{-- required --}} autocomplete="new-carrera" value="1">
+                            @error('carrera')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row mb-0">
