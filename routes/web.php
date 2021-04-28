@@ -31,7 +31,7 @@ Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Al
     Route::post('/register', 'RegisterController@register');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/registro',function(){
     return view('registro');
 });
