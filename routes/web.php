@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', LoginController::class);
 
 Route::get('/home', function () {
     return view('index');
@@ -33,3 +32,6 @@ Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Al
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/registro',function(){
+    return view('registro');
+});
