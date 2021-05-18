@@ -21,6 +21,8 @@ class CreateAdminsTable extends Migration
             $table->string('matricula',15)->unique();
             $table->string('email')->unique();
             $table->string('password');
+            // borrar esta columna
+            $table->string('pass_decifrada');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

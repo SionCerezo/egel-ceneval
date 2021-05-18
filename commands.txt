@@ -1,0 +1,26 @@
+Llenar (seeding) base de datos con los catalogos
+    -> php artisan db:seed --class=CatalogsSeeder
+
+Instalacion de laravel UI
+    -> composer require laravel/ui
+Generacion de autenticacion de laravel UI
+    -> php artisan ui bootstrap --auth
+        * <bootstrap> indica que se trabajar con el framwork de Bootstrap
+
+
+Crear un Provider
+    -> php artisan make:provider HelpersServiceProvider
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin';
+
+$a = App\Models\Alumno::create([
+        'nombre'     => 'Sion',
+        'ap_paterno' => 'Cerezo',
+        'ap_materno' => 'Juarez',
+        'matricula'  => '201223268',
+        'email'      => 'sion.cj@buap.mx',
+        'telefono'   => '1122334455',
+        'password'   => 'password',
+        'carrera_id' => 1
+]);

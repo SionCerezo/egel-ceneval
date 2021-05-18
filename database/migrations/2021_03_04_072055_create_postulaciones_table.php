@@ -16,7 +16,7 @@ class CreatePostulacionesTable extends Migration
         Schema::create('postulaciones', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('status_id')->constrained('status_catalog');
+            $table->string('status_id')->references('id')->on('status_catalog');
 
             $table->foreignId('alumno_id')->constrained()
                 ->onUpdate('cascade')

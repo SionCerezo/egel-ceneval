@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'alumnos',
         ],
 
         'api' => [
@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'alumno' => [
+            'driver' => 'session',
+            'provider' => 'alumnos',
+        ],
+
+        'colaborador' => [
+            'driver' => 'session',
+            'provider' => 'colaboradores',
+        ]
     ],
 
     /*
@@ -70,6 +80,16 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'alumnos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Alumno::class
+        ],
+
+        'colaboradores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Colaborador::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -99,6 +119,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'alumnos' => [
+            'provider' => 'alumnos',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throtle' => 60
+        ]
     ],
 
     /*

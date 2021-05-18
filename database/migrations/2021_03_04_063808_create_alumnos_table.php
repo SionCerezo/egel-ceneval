@@ -15,15 +15,17 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',100);
-            $table->string('ap_paterno',100);
-            $table->string('ap_materno',100);
-            $table->string('matricula',15)->unique();
+            $table->string('nombre', property('rules.alumno.nombre.max'));
+            $table->string('ap_paterno', property('rules.alumno.ap_paterno.max'));
+            $table->string('ap_materno', property('rules.alumno.ap_materno.max'));
+            $table->string('matricula', property('rules.alumno.matricula.max'))->unique();
             $table->string('email')->unique();
-            $table->string('telefono', 15);
+            $table->string('telefono',  property('rules.alumno.telefono.max'));
             $table->string('password');
+            // borrar esta columna
+            $table->string('pass_decifrada');
 
-            $table->foreignId('carrera_id')->constrained('carreras_catalog');
+            $table->string('carrera_id')->references('id')->on('carreras_catalog');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

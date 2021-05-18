@@ -22,7 +22,7 @@ class CreateConvocatoriasTable extends Migration
             $table->date('fecha_fin');
 
             $table->foreignId('periodo_id')->constrained();
-            $table->foreignId('status_id')->constrained('status_catalog');
+            $table->string('status_id')->references('id')->on('status_catalog');
 
             $table->timestamps();
         });
