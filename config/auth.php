@@ -50,6 +50,11 @@ return [
         'alumno' => [
             'driver' => 'session',
             'provider' => 'alumnos',
+        ],
+
+        'colaborador' => [
+            'driver' => 'session',
+            'provider' => 'colaboradores',
         ]
     ],
 
@@ -79,6 +84,11 @@ return [
         'alumnos' => [
             'driver' => 'eloquent',
             'model' => App\Models\Alumno::class
+        ],
+
+        'colaboradores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Colaborador::class
         ]
 
         // 'users' => [

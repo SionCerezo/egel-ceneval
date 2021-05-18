@@ -22,28 +22,28 @@ class CatalogsSeeder extends Seeder
     }
 
     private function seedCarreras(){
-        Carrera::create(['nombre'=>'Ingeniería en Ciencias de la Computación'])
+        Carrera::create(['id'=>'icc','nombre'=>'Ingeniería en Ciencias de la Computación'])
             ->save();
 
-        Carrera::create(['nombre'=>'Licenciatura en Ciencias de la Computación'])
+        Carrera::create(['id'=>'lcc','nombre'=>'Licenciatura en Ciencias de la Computación'])
             ->save();
 
-        Carrera::create(['nombre'=>'Ingeniería en Tecnologías de la Información'])
+        Carrera::create(['id'=>'iti','nombre'=>'Ingeniería en Tecnologías de la Información'])
             ->save();
     }
 
     private function seedPeriodos()
     {
-        PeriodoCatalog::create(['nombre'=>'Primavera'])->save();
-        PeriodoCatalog::create(['nombre'=>'Verano'])->save();
-        PeriodoCatalog::create(['nombre'=>'Otoño'])->save();
+        PeriodoCatalog::create(['id'=>'primavera','nombre'=>'Primavera'])->save();
+        PeriodoCatalog::create(['id'=>'verano','nombre'=>'Verano'])->save();
+        PeriodoCatalog::create(['id'=>'otono','nombre'=>'Otoño'])->save();
     }
 
     private function seedStatus()
     {
-        Status::create(['valor'=>'Activa'])->save();
-        Status::create(['valor'=>'Pendiente'])->save();
-        Status::create(['valor'=>'Cerrada'])->save();
+        Status::create(['id'=>'active', 'valor'=>'Activa'])->save();
+        Status::create(['id'=>'pending', 'valor'=>'Pendiente'])->save();
+        Status::create(['id'=>'close', 'valor'=>'Cerrada'])->save();
         // Añadir las que falten ...
     }
 }

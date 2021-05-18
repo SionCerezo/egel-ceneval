@@ -1,132 +1,90 @@
-@extends('layouts.app')
+@extends('auth.master')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+@section('title', 'Registro')
 
-                <div class="card-body">
-                    @dump($errors)
-                    <form method="POST" action="{{ route('alumno.register') }}">
-                        @csrf
+@section('css')
+<style>
+.egel-form-group {
+    margin-top: 1.5rem;
+}
+</style>
+@endsection
 
-                        <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                            <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" {{-- required --}} autocomplete="nombre" autofocus>
-
-                                @error('nombre')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <label for="ap_paterno" class="col-md-4 col-form-label text-md-right">Apellido paterno</label>
-                            <div class="col-md-6">
-                                <input id="ap_paterno" type="text" class="form-control @error('ap_paterno') is-invalid @enderror" name="ap_paterno" value="{{ old('ap_paterno') }}" {{-- required --}} autocomplete="ap_paterno" autofocus>
-
-                                @error('ap_paterno')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <label for="ap_materno" class="col-md-4 col-form-label text-md-right">Apellido materno</label>
-                            <div class="col-md-6">
-                                <input id="ap_materno" type="text" class="form-control @error('ap_materno') is-invalid @enderror" name="ap_materno" value="{{ old('ap_materno') }}" {{-- required --}} autocomplete="ap_materno" autofocus>
-
-                                @error('ap_materno')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+@section('body')
+{{-- <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(../assets/images/big/3.jpg);">
+</div> --}}
+<div class="col-lg-12 col-md-12 bg-white">
+    <div class="p-3">
+        <h2 class="mt-3 text-center">Registro para alumnos</h2>
+        <form class="mt-4" method="POST" action="{{ route('alumno.register') }}">
+            @csrf
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <img src="{{ asset('images/'.property('images.logos.fcc')) }}" alt="FCC">
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {{-- <label class="text-dark" for="username">Usuario</label> --}}
+                            <x-forms.input type="text" label="Nombre"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <x-forms.input type="text" label="Apellido paterno" name="ap_paterno"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <x-forms.input type="text" label="Apellido materno" name="ap_materno"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" {{-- required --}} autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="col-lg-12">
+                            <x-forms.input type="email" label="e-mail" name="email"/>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" {{-- required --}} autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" {{-- required --}} autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="matricula" class="col-md-4 col-form-label text-md-right">matricula</label>
-                            <div class="col-md-6">
-                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" {{-- required --}} autocomplete="new-matricula">
-                                @error('matricula')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="telefono" class="col-md-4 col-form-label text-md-right">telefono</label>
-                            <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" {{-- required --}} autocomplete="new-telefono">
-                                @error('telefono')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="carrera" class="col-md-4 col-form-label text-md-right">carrera</label>
-                            <input id="carrera" type="text" class="form-control @error('carrera') is-invalid @enderror" name="carrera" {{-- required --}} autocomplete="new-carrera" value="1">
-                            @error('carrera')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <x-forms.input type="password" label="Contraseña" name="password"/>
+                </div>
+                <div class="col-lg-4">
+                    <x-forms.input type="password" label="Confirmar contraseña" name="password_confirmation"/>
+                </div>
+                <div class="col-lg-4">
+                    <x-forms.input type="text" label="Teléfono" name="telefono"/>
+                </div>
+
+                <div class="col-lg-4">
+                    <x-forms.input type="text" label="Matrícula" name="matricula"/>
+                </div>
+
+                <div class="col-lg-8">
+                    @error('carrera')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <div class="egel-form-group">
+                        <select class="custom-select mr-sm-2" name="carrera" id="slctCarrera"
+                        data-toggle="tooltip" data-placement="top" data-original-title="Selecciona tu carrera">
+                            <option selected="">Selecciona tu carrera</option>
+                            @foreach ($carreras as $carrera)
+                            <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center mt-5">
+                    ¿Ya estás registrado? <a href="{{ route('login') }}" class="text-danger">Ingresa</a>
+                </div>
+                <div class="col-lg-6 text-center mt-5">
+                    <button type="submit" class="btn btn-block btn-dark">Registrarse</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/register.js') }}"></script>
 @endsection

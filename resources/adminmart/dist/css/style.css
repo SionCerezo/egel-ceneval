@@ -1600,7 +1600,7 @@ textarea.form-control {
   box-shadow: 0 0 0 0.2rem rgba(34, 202, 128, 0.25); }
 
 .invalid-feedback {
-  display: none;
+  display: inline;
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
@@ -7524,8 +7524,8 @@ a.text-purple:hover, a.text-purple:focus {
     color: inherit;
     border-color: #e8eef3; } }
 
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;

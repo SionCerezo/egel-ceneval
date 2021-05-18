@@ -1,3 +1,7 @@
+@php
+    $logoEgel = asset('images/'.property('images.logos.egel'));
+@endphp
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -9,11 +13,54 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('template/assets/images/favicon.png') }}">
-    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ $logoEgel }}">
+    <title>Home - {{ config('app.name', 'EGEL Ceneval') }}</title>
     <!-- Custom CSS -->
     {{-- <link href="{{ asset('template/dist/css/style.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @yield('css')
+    <style>
+    .txt-logo {
+        font-family: 'Roboto', sans-serif;
+        color: #00395E;
+        font-size: 1.5rem;
+    }
+    .txt-logo-bold {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        color: #00395E;
+        font-size: 1.5rem;
+    }
+
+    /* IN style.css */
+    .sidebar-nav #sidebarnav .sidebar-item.selected>.sidebar-link {
+        border-radius: 0 60px 60px 0;
+        color: #fff!important;
+        background: linear-gradient(to right,#00b3e4,#009ccb,#0085b2,#006e99,#00577f);
+        box-shadow: 0 7px 12px 0 rgb(95 118 232 / 21%);
+        opacity: 1;
+    }
+    a:hover {
+        color: #0076a1;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    a {
+        color: #00b3e4;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    .badge-primary {
+        color: #fff;
+        background-color: #00b3e4;
+    }
+    .post-item{
+        margin: 30px 5%;
+    }
+    .post-title{
+        padding: 15px 0px;
+    }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,21 +99,22 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="{{ route('alumno.home') }}">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
-                                <img src="{{ asset('template/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+                                <img src="{{ $logoEgel }}" width="40" height="45" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
-                                <img src="{{ asset('template/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
+                                <img src="{{ $logoEgel }}" width="40" height="45" alt="homepage" class="light-logo" />
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
-                            <span class="logo-text">
+                            <span class="txt-logo-bold">EGEL</span><span class="txt-logo">Ceneval</span>
+                            {{-- <span class="logo-text">
                                 <!-- dark Logo text -->
                                 <img src="{{ asset('template/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo text -->
                                 <img src="{{ asset('template/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
-                            </span>
+                            </span> --}}
                         </a>
                     </div>
                     <!-- ============================================================== -->
@@ -198,20 +246,6 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <form>
-                                    <div class="customize-input">
-                                        <input class="form-control custom-shadow custom-radius border-0 bg-white"
-                                            type="search" placeholder="Search" aria-label="Search">
-                                        <i class="form-control-icon" data-feather="search"></i>
-                                    </div>
-                                </form>
-                            </a>
-                        </li>
-                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -219,9 +253,10 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 <img src="{{ asset('template/assets/images/users/profile-pic.jpg') }}" alt="user" class="rounded-circle"
                                     width="40">
-                                <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
-                                        class="svg-icon"></i></span>
+                                <span class="ml-2 d-none d-lg-inline-block"><span>Hola,</span>
+                                    <span class="text-dark">{{ Auth::user()->nombre }}</span>
+                                    <i class="svg-icon" data-feather="chevron-down" ></i>
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
@@ -238,10 +273,17 @@
                                         class="svg-icon mr-2 ml-1"></i>
                                     Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    Logout</a>
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                                    Salir
+                                 </a>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                     @csrf
+                                 </form>
                                 <div class="dropdown-divider"></div>
+
                                 <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
                                         Profile</a></div>
                             </div>
@@ -265,11 +307,14 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="layout"
-                                aria-expanded="false"><i data-feather="layout" class="feather-icon"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link sidebar-link" href="{{ route('alumno.home') }}" aria-expanded="false">
+                                <i data-feather="home" class="feather-icon"></i>
+                                <span class="hide-menu">Home</span>
+                            </a>
+                        </li>
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Postulaciones</span></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html"
                                 aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
@@ -491,6 +536,26 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
+            <div class="blog-item post-item">
+                <div class="post-content">
+                    <div class="blog-title">
+                        <h2><a href="https://www.free-css.com/free-css-templates">{{ $convocatoria->titulo }}</a></h2>
+                    </div>
+                    <div class="post-date"><span class="day">30</span><span class="month">Nov</span></div>
+                    <div class="meta-info-blog">
+                        <span><i class="fa fa-tag"></i> <a href="https://www.free-css.com/free-css-templates">News</a></span>
+                        <span><i class="fa fa-calendar"></i> <a href="https://www.free-css.com/free-css-templates">May 11, 2045</a></span>
+                        <span><i class="fa fa-lock-open"></i>
+                            <a href="https://www.free-css.com/free-css-templates">{{ $convocatoria->fecha_inicio }} - {{ $convocatoria->fecha_fin }}</a>
+                        </span>
+                        <span><i class="fa fa-comments"></i> <a href="https://www.free-css.com/free-css-templates">12 Comments</a></span>
+                    </div>
+                    <div class="blog-desc">
+                        {{ formatDate($convocatoria->fecha_fin, 'MMMM D, YYYY') }}
+                        {!! $convocatoria->descripcion !!}
+                    </div>
+                </div>
+            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

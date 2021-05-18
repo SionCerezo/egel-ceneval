@@ -14,7 +14,7 @@ class CreatePeriodosCatalogTable extends Migration
     public function up()
     {
         Schema::create('periodos_catalog', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 15)->primary();
             $table->string('nombre',100);
         });
     }

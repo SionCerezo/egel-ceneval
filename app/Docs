@@ -1,0 +1,35 @@
+Crear Helper
+1. Crear Archivo php en App/Helpers
+    ej: App/Helpers/Conversions.php
+
+    Dentro escribir la funcion helper ej:
+    <?php
+    function convert($date, $format = 'MMM D, YYYY'){
+        return Str::title($date->isoFormat($format));
+    }
+    ?>
+
+    Si el codigo es complejo, usualmente se crea una clase en el mismo lugar con metodo(s) estaticos
+    para posteriormente ser llamados por la funcion helper, ej:
+    function convert(){
+        return ConvertHelper::convert();
+    }
+2. Registrar el archivo en el archivo composer en la seccion autoload:
+    "autoload": {
+        "files": [
+            "app/Helpers/Conversions.php",
+        ]
+    },
+------------------------------
+titulo dinamico
+<title>
+
+
+Auth::user() == NULL    FIX
+? para arreglar el problema cambiar en LoginCOntroller a:
+    $this->guard('alumno')->attempt(<...>)
+    en lugar de
+    Auth::guard('alumno')->attempt(<...>)
+
+Class not found in morph relation
+- Si ya se rectifico que todo esta bien, reejucutar las migraciones

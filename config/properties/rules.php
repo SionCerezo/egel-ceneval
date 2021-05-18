@@ -22,13 +22,13 @@ return [
             'type' => 'email',
         ],
         'telefono' => [
-            'max' => 15,
+            'max' => 18,
             'type' => 'string',
         ],
         'password' => [
             'max' => 255,
             'type' => 'string',
         ],
-    ]
+    ],
 ]
 ?>

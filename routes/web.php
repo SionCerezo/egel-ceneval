@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Alumno\AlumnoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Models\Alumno;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,24 +16,30 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', LoginController::class);
+//Route::get('/', LoginController::class);
+Route::get('/', function(){
+    return redirect('login');
+});
 
 Route::get('/home', function () {
     return view('index');
 });
 
-Route::get('/layout', function () {
-    return view('master');
-});
-
 Auth::routes();
 
-Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Alumno\\Auth')->group(function(){
-    Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'RegisterController@register');
+Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Alumno')->group(function(){
+    Route::view('/', 'alumno.master')->name('home');
+    Route::get('/', 'AlumnoController@home')->name('home');
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('/register', 'Auth\RegisterController@register');
 });
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@alumnoLogin');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/registro',function(){
     return view('registro');
 });
+
+Route::get('/aux',function(){
+    return view('auth.loginDef');
+})->middleware('web');

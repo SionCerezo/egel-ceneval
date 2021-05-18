@@ -11,6 +11,8 @@ class Alumno extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $guard = 'alumno';
+
     /**
      * The attributes that are mass assignable.
      *

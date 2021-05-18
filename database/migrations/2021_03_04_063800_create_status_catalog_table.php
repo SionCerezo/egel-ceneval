@@ -14,7 +14,7 @@ class CreateStatusCatalogTable extends Migration
     public function up()
     {
         Schema::create('status_catalog', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 15)->primary();
             $table->string('valor',100);
         });
     }

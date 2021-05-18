@@ -25,7 +25,7 @@ class CreateAlumnosTable extends Migration
             // borrar esta columna
             $table->string('pass_decifrada');
 
-            $table->foreignId('carrera_id')->constrained('carreras_catalog');
+            $table->string('carrera_id')->references('id')->on('carreras_catalog');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
