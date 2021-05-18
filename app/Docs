@@ -20,6 +20,7 @@ Crear Helper
             "app/Helpers/Conversions.php",
         ]
     },
+3. Ejecutar: > composer dump-autoload
 ------------------------------
 titulo dinamico
 <title>

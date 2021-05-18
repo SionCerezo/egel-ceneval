@@ -546,12 +546,12 @@
                         <span><i class="fa fa-tag"></i> <a href="https://www.free-css.com/free-css-templates">News</a></span>
                         <span><i class="fa fa-calendar"></i> <a href="https://www.free-css.com/free-css-templates">May 11, 2045</a></span>
                         <span><i class="fa fa-lock-open"></i>
-                            <a href="https://www.free-css.com/free-css-templates">{{ $convocatoria->fecha_inicio }} - {{ $convocatoria->fecha_fin }}</a>
+                            <a href="https://www.free-css.com/free-css-templates">{{ localDate($convocatoria->fecha_fin) }} - {{ localDate($convocatoria->fecha_fin) }}</a>
                         </span>
                         <span><i class="fa fa-comments"></i> <a href="https://www.free-css.com/free-css-templates">12 Comments</a></span>
                     </div>
                     <div class="blog-desc">
-                        {{ formatDate($convocatoria->fecha_fin, 'MMMM D, YYYY') }}
+                        {{ localDate($convocatoria->fecha_fin) }}
                         {!! $convocatoria->descripcion !!}
                     </div>
                 </div>

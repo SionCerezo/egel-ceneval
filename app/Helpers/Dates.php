@@ -2,16 +2,19 @@
 use Illuminate\Support\Str;
 
 /**
- * Obtiene el valor de una variable especificada en el folder de configuracion 'config/properties'.
+ * Convierte fecha de una instancia de Carbon a un string a partir del formato dado, utilizando la
+ * configuracion local.
  *
- * @param string $prop_name El nombre de la propiedad en sintaxis punto (dot syntax).
- * @param mixed $default_value Un valor por default a devolver si el nombre de la propiedad
+ * @param Carbon $date El objeto fecha a convertir.
+ * @param string $format Formato valido de Carbon para aplicar a la conversion.
  * no se encuentra.
  *
- * @return mixed El valor de la variable que coincide con $prop_name en el archivo de configuracion
- * especificado.
+ * @return string La fecha convertida a string.
  */
-function formatDate($date, $format = 'MMM D, YYYY'){
+function localDate($date, $format = null){
+    if( !isset($format) ){
+        $format = property('dates.formats.default');
+    }
     return Str::title($date->isoFormat($format));
 }
 ?>
