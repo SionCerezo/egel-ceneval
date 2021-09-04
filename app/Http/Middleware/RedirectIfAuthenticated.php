@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\UserHelpers;
+use App\Models\Admin;
+use App\Models\Colaborador;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -23,8 +26,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // return redirect(RouteServiceProvider::HOME);
-                return redirect(route('alumno.home'));
+                return redirect(UserHelpers::userHomePath());
             }
         }
 

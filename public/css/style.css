@@ -2853,7 +2853,7 @@ readers do not read off random characters that represent icons */
 }
 /*
  Use the following CSS code if you want to have a class per icon.
- Instead of a list of all class selectors, you can use the generic [class*="icon-"] selector, but it's slower: 
+ Instead of a list of all class selectors, you can use the generic [class*="icon-"] selector, but it's slower:
 */
 .icon-user,
 .icon-people,
@@ -7555,7 +7555,7 @@ input[type="button"].btn-block {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #b8c3d5;
+  color: #4F5467;
   vertical-align: middle;
   background: url(/images/custom-select.png?68b0bc4a268b019a8855f348aa88578f) no-repeat right 0.75rem center/8px 10px;
   background-color: #fff;
@@ -8424,10 +8424,10 @@ input[type="button"].btn-block {
 
 .badge-info {
   color: #fff;
-  background-color: #5f76e8; }
+  background-color: #00b3e4; }
   a.badge-info:hover, a.badge-info:focus {
     color: #fff;
-    background-color: #3250e2; }
+    background-color: #0076a1; }
   a.badge-info:focus, a.badge-info.focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(95, 118, 232, 0.5); }

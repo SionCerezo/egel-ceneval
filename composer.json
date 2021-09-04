@@ -43,7 +43,8 @@
         },
         "files": [
             "app/Helpers/Properties.php",
-            "app/Helpers/Dates.php"
+            "app/Helpers/Dates.php",
+            "app/Helpers/User.php"
         ]
     },
     "autoload-dev": {

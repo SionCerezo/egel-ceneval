@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        var_dump(auth());
         $this->middleware('auth');
     }
 

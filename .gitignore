@@ -21,3 +21,9 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# trumbowyg
+bower_components/
+
+# Visual Studio Code
+.vscode/

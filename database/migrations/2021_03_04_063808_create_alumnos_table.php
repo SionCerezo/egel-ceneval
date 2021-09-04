@@ -19,17 +19,13 @@ class CreateAlumnosTable extends Migration
             $table->string('ap_paterno', property('rules.alumno.ap_paterno.max'));
             $table->string('ap_materno', property('rules.alumno.ap_materno.max'));
             $table->string('matricula', property('rules.alumno.matricula.max'))->unique();
-            $table->string('email')->unique();
             $table->string('telefono',  property('rules.alumno.telefono.max'));
-            $table->string('password');
-            // borrar esta columna
-            $table->string('pass_decifrada');
 
             $table->string('carrera_id')->references('id')->on('carreras_catalog');
+            // $table->foreignId('userable_id')->constrained()
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade');
 
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
         });
     }
 

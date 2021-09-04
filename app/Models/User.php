@@ -17,9 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        //borrar este campo
+        'pass_decifrada'
     ];
 
     /**
@@ -40,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Obtiene la implementacion de un user: Admin, Alumno o Colaborador.
+     */
+    public function fullUser()
+    {
+        return $this->morphTo(__FUNCTION__, 'user_type', 'user_id');
+    }
 }

@@ -40,6 +40,7 @@
         "morris.js": "^0.5.0",
         "perfect-scrollbar": "^0.7.1",
         "popper.js": "^1.14.3",
-        "raphael": "^2.2.7"
+        "raphael": "^2.2.7",
+        "trumbowyg": "^2.24.0"
     }
 }

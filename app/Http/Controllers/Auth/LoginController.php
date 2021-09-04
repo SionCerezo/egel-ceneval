@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\UserHelpers;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Brick\Math\Exception\MathException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
@@ -32,17 +34,38 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
-     * Create a new controller instance.
+     * The user has been authenticated.
      *
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
      */
-    public function __construct()
+    protected function authenticated(Request $request, $user)
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('guest:alumno')->except('logout');
+        session(['fulluser' => $user->fullUser]);
     }
 
-    public function alumnoLogin(Request $request)
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        return UserHelpers::userHomePath();
+    }
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    //     //$this->middleware('guest:alumno')->except('logout');
+    // }
+
+    public function customLogin(Request $request)
     {
         $this->validate($request, [
             'email'   => 'required|email',
@@ -50,11 +73,15 @@ class LoginController extends Controller
         ]);
 
         if ($this->guard('alumno')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
             return redirect()->intended(route('alumno.home'));
         }
 
         $errorMsg = "Usuario y/o contraseña incorrecta, verifica tus datos";
         return back()->withInput($request->only('email', 'remember'))->with('loginFail',$errorMsg);
+    }
+
+    private function checkUserType(Request $request)
+    {
+
     }
 }

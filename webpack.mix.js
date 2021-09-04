@@ -14,8 +14,10 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
     .js('resources/js/register.js', 'public/js')
+    .js('bower_components/trumbowyg/dist/trumbowyg.min.js', 'public/js')
     .js('resources/js/master.js', 'public/js').sourceMaps()
     .postCss('resources/adminmart/dist/css/style.css', 'public/css')
+    .postCss('bower_components/trumbowyg/dist/ui/trumbowyg.min.css', 'public/css')
     .postCss('resources/css/estilo.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //

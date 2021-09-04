@@ -2,8 +2,10 @@
     "/js/app.js": "/js/app.js",
     "/js/login.js": "/js/login.js",
     "/js/register.js": "/js/register.js",
+    "/js/trumbowyg.min.js": "/js/trumbowyg.min.js",
     "/js/master.js": "/js/master.js",
     "/css/style.css": "/css/style.css",
     "/css/app.css": "/css/app.css",
-    "/css/estilo.css": "/css/estilo.css"
+    "/css/estilo.css": "/css/estilo.css",
+    "/css/trumbowyg.min.css": "/css/trumbowyg.min.css"
 }

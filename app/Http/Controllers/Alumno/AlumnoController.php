@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Alumno;
 use App\Http\Controllers\Controller;
 use App\Models\Convocatoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlumnoController extends Controller
 {

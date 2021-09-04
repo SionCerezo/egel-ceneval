@@ -3,21 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 use App\Traits\User as IsUser;
 
-class Colaborador extends Authenticatable
+class Admin extends Model
 {
     use HasFactory, Notifiable, IsUser;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'colaboradores';
+    // protected $guard = 'alumno';
 
     /**
      * Indicates if the model should be timestamped.
@@ -36,7 +31,9 @@ class Colaborador extends Authenticatable
         'ap_paterno',
         'ap_materno',
         'matricula',
+        // 'email',
         'telefono',
+        // 'password',
         'carrera_id',
     ];
 

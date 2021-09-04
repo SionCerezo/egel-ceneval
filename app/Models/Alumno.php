@@ -7,11 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Traits\User as IsUser;
+
 class Alumno extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, IsUser;
 
-    protected $guard = 'alumno';
+    // protected $guard = 'alumno';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +32,10 @@ class Alumno extends Authenticatable
         'ap_paterno',
         'ap_materno',
         'matricula',
-        'email',
+        // 'email',
         'telefono',
-        'password',
+        // 'password',
         'carrera_id',
-        //borrar este campo
-        'pass_decifrada'
     ];
 
     /**
@@ -49,4 +56,9 @@ class Alumno extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->morphOne(User::class, 'user');
+    }
 }
