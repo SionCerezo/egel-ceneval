@@ -15,11 +15,11 @@ class CreateConvocatoriasTable extends Migration
     {
         Schema::create('convocatorias', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->mediumText('descripcion')->nullable();
+            $table->string('title');
+            $table->mediumText('description')->nullable();
             $table->morphs('create_user');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('start_date');
+            $table->date('end_date');
 
             $table->foreignId('periodo_id')->constrained();
             $table->string('status_id')->references('id')->on('status_catalog');

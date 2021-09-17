@@ -28,4 +28,9 @@ trait User
     {
         return $this->user->user_type;
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->pat_surname." ".$this->mat_surname." ".$this->name;
+    }
 }

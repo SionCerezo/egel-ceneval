@@ -15,7 +15,7 @@ class Convocatoria extends Model
      *
      * @var array
      */
-    protected $fillable = ['titulo','descripcion','fecha_inicio','fecha_fin'];
+    protected $fillable = ['title','description','start_date','end_date'];
 
     public function author()
     {
@@ -26,9 +26,21 @@ class Convocatoria extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function periodo(){
+        return $this->belongsTo(Periodo::class);
+    }
+
     public function getInicioAttribute()
     {
-        return Str::title($this->fecha_inicio->isoFormat('MMM D, YYYY'));
+        return Str::title($this->start_date->isoFormat('MMM D, YYYY'));
+    }
+
+    /**
+     * Obtiene las Postulaciones de la Convocatoria.
+     */
+    public function postulaciones()
+    {
+        return $this->hasMany(Postulacion::class);
     }
 
     /**
@@ -37,8 +49,8 @@ class Convocatoria extends Model
      * @var array
      */
     protected $casts = [
-        'fecha_inicio' => 'datetime',
-        'fecha_fin' => 'datetime',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
         'email_verified_at' => 'datetime',
     ];
 }

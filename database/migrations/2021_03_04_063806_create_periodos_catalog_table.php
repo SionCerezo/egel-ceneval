@@ -15,7 +15,7 @@ class CreatePeriodosCatalogTable extends Migration
     {
         Schema::create('periodos_catalog', function (Blueprint $table) {
             $table->string('id', 15)->primary();
-            $table->string('nombre',100);
+            $table->string('name',100);
         });
     }
 

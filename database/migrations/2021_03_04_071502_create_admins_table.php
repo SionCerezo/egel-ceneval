@@ -15,11 +15,11 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', property('rules.admin.nombre.max'));
-            $table->string('ap_paterno', property('rules.admin.ap_paterno.max'));
-            $table->string('ap_materno', property('rules.admin.ap_materno.max'));
+            $table->string('name', property('rules.admin.name.max'));
+            $table->string('pat_surname', property('rules.admin.pat_surname.max'));
+            $table->string('mat_surname', property('rules.admin.mat_surname.max'));
             $table->string('matricula', property('rules.admin.matricula.max'))->unique();
-            $table->string('telefono',  property('rules.admin.telefono.max'));
+            $table->string('telephone',  property('rules.admin.telephone.max'));
 
             // $table->timestamp('email_verified_at')->nullable();
             // $table->rememberToken();

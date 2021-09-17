@@ -31,10 +31,10 @@ class DummySeeder extends Seeder
 
     private function seedConvocatorias(){
         Convocatoria::create([
-            'titulo'=>'Convocatoria Verano 2021',
-            'descripcion'=>'Aplicación de examen para el perido 2021',
-            'fecha_inicio'=> Carbon::now(),
-            'fecha_fin'=> Carbon::now()->addMonth(1),
+            'title'=>'Convocatoria Verano 2021',
+            'description'=>'Aplicación de examen para el perido 2021',
+            'start_date'=> Carbon::now(),
+            'end_date'=> Carbon::now()->addMonth(1),
             'periodo_id' => DB::table('periodos')->select('id')->limit(1)->get()->first()->id,
             'status_id' => 'active',
             'create_user_id' => Colaborador::first()->id,
@@ -54,11 +54,11 @@ class DummySeeder extends Seeder
         DB::table('admins')->delete();
 
         $alumno = Admin::create([
-            'nombre'=> 'Carlos',
-            'ap_paterno'=> 'Palomino',
-            'ap_materno'=> 'Jimenez',
+            'name'=> 'Carlos',
+            'pat_surname'=> 'Palomino',
+            'mat_surname'=> 'Jimenez',
             'matricula'=> '123456789',
-            'telefono'=> '11 22 33 44 55',
+            'telephone'=> '11 22 33 44 55',
         ]);
 
         $password = '123123123';
@@ -74,11 +74,11 @@ class DummySeeder extends Seeder
         DB::table('alumnos')->delete();
 
         $alumno = Alumno::create([
-            'nombre'=> 'Sion',
-            'ap_paterno'=> 'Cerezo',
-            'ap_materno'=> 'Juarez',
+            'name'=> 'Sion',
+            'pat_surname'=> 'Cerezo',
+            'mat_surname'=> 'Juarez',
             'matricula'=> '123456789',
-            'telefono'=> '11 22 33 44 55',
+            'telephone'=> '11 22 33 44 55',
             'carrera_id'=> 'icc',
         ]);
 
@@ -95,11 +95,11 @@ class DummySeeder extends Seeder
         DB::table('colaboradores')->delete();
 
         $colaborador = Colaborador::create([
-            'nombre'=> 'Juan',
-            'ap_paterno'=> 'Sanchez',
-            'ap_materno'=> 'Lopez',
+            'name'=> 'Juan',
+            'pat_surname'=> 'Sanchez',
+            'mat_surname'=> 'Lopez',
             'matricula'=> '123456789',
-            'telefono'=> '11 22 33 44 55',
+            'telephone'=> '11 22 33 44 55',
             'carrera_id'=> 'lcc',
         ]);
 

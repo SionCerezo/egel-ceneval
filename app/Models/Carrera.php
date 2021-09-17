@@ -15,13 +15,19 @@ class Carrera extends Model
      * @var string
      */
     protected $table = 'carreras_catalog';
+/**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['nombre'];
+    protected $fillable = ['name'];
 
     /**
      * Indicates if the model should be timestamped.

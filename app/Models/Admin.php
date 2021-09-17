@@ -27,12 +27,12 @@ class Admin extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre',
-        'ap_paterno',
-        'ap_materno',
+        'name',
+        'pat_surname',
+        'mpat_surname',
         'matricula',
         // 'email',
-        'telefono',
+        'telephone',
         // 'password',
         'carrera_id',
     ];

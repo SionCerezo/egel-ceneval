@@ -15,7 +15,7 @@ class CreateCarrerasCatalogTable extends Migration
     {
         Schema::create('carreras_catalog', function (Blueprint $table) {
             $table->string('id', 15)->primary();
-            $table->string('nombre');
+            $table->string('name');
         });
     }
 

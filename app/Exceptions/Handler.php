@@ -38,4 +38,14 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
+        {
+            return response(['success' => false, 'status' => 404]);
+        }
+
+        return parent::render($request, $e);
+    }
 }

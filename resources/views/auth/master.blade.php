@@ -70,17 +70,11 @@
     <!-- All Required js -->
     <!-- ============================================================== -->
     <script src="{{ asset('js/login.js') }}"></script>
+    <script src="{{ asset('js/utils/form-validations.js') }}"></script>
     @yield('js')
+
     <script type="text/javascript">
-
-    </script>
-    <!-- ============================================================== -->
-    <!-- This page plugin js -->
-    <!-- ============================================================== -->
-    <script>
         $(".preloader ").fadeOut();
-
-        let checkIsInvalid = input => $(input).removeClass('is-invalid');
     </script>
 </body>
 

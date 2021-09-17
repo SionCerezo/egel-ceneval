@@ -1,0 +1,30 @@
+Instalacion de proyecto existente
+    1) Clonar el proyecto
+    2) Ejecutar > composer install (sobre la raíz del proyecto) para que descargue las dependencias
+        y genere lo necesario
+    3) Crear un archivo .env (copiar .env.example)
+        cambiar los datos de la base si es necesario segun sea el caso
+    4) Ejecutar > php Artisan key:generate para que genere la key del proyecto en el archivo .env
+
+Instalar Laravel Authentication
+    instalar con: > composer require laravel/ui
+        Actualizar dependencias en compser.lock si es necesario con:
+        > composer update
+
+Instalar dependencias JS
+    > npm install
+
+Talvez
+    instalar CKEditor:
+    > npm install ckeditor4
+
+
+
+
+
+---------
+PENDIENTES
+
+> manejar QueryException en errorHandler
+
+al parecer convocatoria.css no se usa

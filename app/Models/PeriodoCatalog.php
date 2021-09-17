@@ -21,7 +21,7 @@ class PeriodoCatalog extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre'];
+    protected $fillable = ['name'];
 
     /**
      * Indicates if the model should be timestamped.

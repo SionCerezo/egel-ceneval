@@ -1,0 +1,58 @@
+.egel-card-convocatoria {
+    background-image: none;
+    box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 40%);
+    /* color: #111111; */
+    background-color: #ffffff;
+    /* display: flex;
+    position: relative;
+    text-align: left; */
+}
+
+.egel-convocatoria {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding: 30px;
+    justify-content: flex-start;
+    /* display: flex; */
+    flex-direction: column;
+    /* position: relative;
+    flex: 1;
+    max-width: 100%; */
+}
+
+.egel-convocatoria-title {
+    font-size: 1.25rem;
+    margin-right: 0;
+    font-weight: 700;
+    /* font-size: 1.125rem;
+    margin: 30px 2px 0 0; */
+    font-family: 'PT Sans', sans-serif !important;
+    /* padding: 0; */
+    color: #ea4d06 !important;
+    /* word-wrap: break-word;
+    position: relative; */
+}
+
+.egel-convocatoria-descrip {
+    margin: 30px 0px 0px;
+}
+
+.egel-conv-periodo {
+    display: inline-block;
+    float: right;
+}
+.egel-conv-periodo-name {
+    background: rgba(0,0,0,0.12);
+    color: #003b5c;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 0 10px;
+    float: left;
+    border-left: 4px solid #00c9f0;
+}
+.egel-conv-periodo-year {
+    background: #00c9f0;
+    color: #fff;
+    padding: 7px 10px;
+    float: left;
+}

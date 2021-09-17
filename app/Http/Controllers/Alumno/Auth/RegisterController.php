@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Alumno;
 use App\Models\Carrera;
+use App\Models\User;
 use App\Rules\AlphaSpace;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -58,14 +61,14 @@ class RegisterController extends Controller
     {
         $rules = Arr::dot(property('rules.alumno'));
         return Validator::make($data, [
-            'nombre'     => ['required', new AlphaSpace, 'max:'.$rules['nombre.max']],
-            'ap_paterno' => ['required', new AlphaSpace, 'max:'.$rules['ap_paterno.max']],
-            'ap_materno' => ['required', new AlphaSpace, 'max:'.$rules['ap_materno.max']],
-            'matricula'  => ['required', 'digits_between:1,'.$rules['matricula.max'], 'unique:alumnos'],
-            'email'      => ['required', 'string', 'email', 'max:'.$rules['email.max'], 'unique:alumnos'],
-            'telefono'   => ['required', 'string', 'max:'.$rules['telefono.max']],
-            'password'   => ['required', 'string', 'min:8', 'max:'.$rules['password.max'], 'confirmed'],
-            'carrera' => ['required', 'alpha_dash'],
+            'name'        => ['required', new AlphaSpace, 'max:'.$rules['nombre.max']],
+            'pat_surname' => ['required', new AlphaSpace, 'max:'.$rules['ap_paterno.max']],
+            'mat_surname' => ['required', new AlphaSpace, 'max:'.$rules['ap_materno.max']],
+            'matricula'   => ['required', 'digits_between:1,'.$rules['matricula.max'], 'unique:alumnos'],
+            'email'       => ['required', 'string', 'email', 'max:'.$rules['email.max'], 'unique:users'],
+            'telephone'   => ['required', 'string', 'max:'.$rules['telefono.max']],
+            'password'    => ['required', 'string', 'min:8', 'max:'.$rules['password.max'], 'confirmed'],
+            'carrera_id'  => ['required', 'alpha_dash'],
         ]);
     }
 
@@ -77,17 +80,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Alumno::create([
-            'nombre'     => $data['nombre'],
-            'ap_paterno' => $data['ap_paterno'],
-            'ap_materno' => $data['ap_materno'],
-            'matricula'  => $data['matricula'],
-            'email'      => $data['email'],
-            'telefono'   => $data['telefono'],
-            'password'   => Hash::make($data['password']),
-            'carrera_id' => $data['carrera'],
-            // borrar esta validacion
-            'pass_decifrada' => $data['password'],
-        ]);
+        try {
+            DB::beginTransaction();
+
+            $alumno = Alumno::create([
+                'name'        => $data['name'],
+                'pat_surname' => $data['pat_surname'],
+                'mat_surname' => $data['mat_surname'],
+                'matricula'   => $data['matricula'],
+                'telephone'   => $data['telephone'],
+                'carrera_id'  => $data['carrera_id'],
+            ]);
+
+            $user = User::create([
+                'email'     => $data['email'],
+                'password'  => Hash::make($data['password']),
+                'user_type' => Alumno::class,
+                'user_id'   => $alumno->id,
+                // borrar esta validacion
+                'pass_decifrada' => $data['password'],
+            ]);
+
+            DB::commit();
+        } catch (QueryException $th) {
+            DB::rollback();
+            throw $th;
+        }
+
+        return $user;
     }
 }

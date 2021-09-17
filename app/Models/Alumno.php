@@ -28,12 +28,12 @@ class Alumno extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre',
-        'ap_paterno',
-        'ap_materno',
+        'name',
+        'pat_surname',
+        'mat_surname',
         'matricula',
         // 'email',
-        'telefono',
+        'telephone',
         // 'password',
         'carrera_id',
     ];
@@ -60,5 +60,15 @@ class Alumno extends Authenticatable
     public function user()
     {
         return $this->morphOne(User::class, 'user');
+    }
+
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class);
+    }
+
+    public function postulaciones()
+    {
+        return $this->hasMany(Postulacion::class);
     }
 }

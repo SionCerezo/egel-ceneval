@@ -25,9 +25,9 @@ class ConvocatoriaRequest extends FormRequest
     {
         return [
             'title'     => ['required', 'max:255'],
-            'startDate' => ['required', 'email'],
-            'endDate' => ['required', 'date', 'after:startDate'],
-            'period' => ['required', 'exists:periodos_catalog,nombre'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after:startDate'],
+            'period' => ['required', 'exists:periodos_catalog,name'],
             // 'matricula'  => ['required', 'digits_between:1,'.$rules['matricula.max'], 'unique:alumnos'],
             // 'email'      => ['required', 'string', 'email', 'max:'.$rules['email.max'], 'unique:alumnos'],
             // 'telefono'   => ['required', 'string', 'max:'.$rules['telefono.max']],

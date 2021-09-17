@@ -15,7 +15,7 @@ class CreateComentariosTable extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('comentario');
+            $table->mediumText('comment');
 
             $table->foreignId('postulacion_id')->constrained('postulaciones')
                 ->onUpdate('cascade')

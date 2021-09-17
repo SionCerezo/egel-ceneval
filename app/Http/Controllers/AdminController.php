@@ -16,6 +16,6 @@ class AdminController extends Controller
     {
         $convocatoria = Convocatoria::where('status_id','active')
             ->orderByDesc('created_at')->limit(1)->first();
-        return view('admin.convocatorias')->with('convocatoria', $convocatoria);
+        return view('convocatoria.active')->with('convocatoria', $convocatoria);
     }
 }

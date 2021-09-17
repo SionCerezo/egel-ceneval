@@ -32,11 +32,11 @@ class Colaborador extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre',
-        'ap_paterno',
-        'ap_materno',
+        'name',
+        'pat_surname',
+        'mat_surname',
         'matricula',
-        'telefono',
+        'telephone',
         'carrera_id',
     ];
 

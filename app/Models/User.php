@@ -20,7 +20,9 @@ class User extends Authenticatable
         'email',
         'password',
         //borrar este campo
-        'pass_decifrada'
+        'pass_decifrada',
+        'user_type',
+        'user_id'
     ];
 
     /**
