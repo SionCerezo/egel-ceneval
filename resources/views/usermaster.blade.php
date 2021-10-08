@@ -254,34 +254,17 @@
                                     <i class="svg-icon" data-feather="chevron-down" ></i>
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    Inbox</a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY"> <!--Menu de la persona logeada-->
+                                @yield('menu-items-perfil') <!--ponemos el contenido del menu(solo items)-->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    Account Setting</a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
                                     Salir
-                                 </a>
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                     @csrf
-                                 </form>
-                                <div class="dropdown-divider"></div>
-
-                                <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
-                                        Profile</a></div>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                               <div class="dropdown-divider"></div>
                             </div>
                         </li>
                         <!-- ============================================================== -->

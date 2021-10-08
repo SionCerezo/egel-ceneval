@@ -54,6 +54,8 @@ Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Al
 
     Route::get('/postulacion', 'AlumnoController@activePostulation')
         ->name('postulacion');
+    Route::get('/{id}/edit',[AlumnoController::class,'edit'])->name('edit');
+    Route::put('/{id}/update',[AlumnoController::class,'update'])->name('update');
 });
 // Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
 

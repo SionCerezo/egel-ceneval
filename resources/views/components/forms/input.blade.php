@@ -4,7 +4,7 @@
         type='{{ $type }}'
         name="{{ $name }}"
         id="{{ $name }}"
-        value="{{ old($name) }}"
+        value="{{ $value = '' ? old($name) : $value }}"
         placeholder="{{ $label }}"
         data-toggle="tooltip" data-placement="top" data-original-title="{{ $label }}"
         onfocus="checkIsInvalid(this)">
