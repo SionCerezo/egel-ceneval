@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
-use App\Models\Convocatoria;
 use App\Models\File;
 use App\Models\Postulacion;
+use App\Services\FileService;
+use App\Services\PostulacionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,18 @@ use ZipArchive;
 
 class PostulacionController extends Controller
 {
+
+    public $postulacionService;
+
+    public $fileService;
+
+    public function __construct(PostulacionService $postulacionService,
+        FileService $fileService)
+    {
+        $this->postulacionService = $postulacionService;
+        $this->fileService = $fileService;
+    }
+
     /**
      * El path raiz para almacenar los archivos de los alumnos.
      *
@@ -28,10 +41,7 @@ class PostulacionController extends Controller
      */
     public function index()
     {
-        $currentPostulations = Convocatoria::where('status_id','active')
-            ->orderByDesc('created_at')->first()
-            ->postulaciones;
-
+        $currentPostulations = $this->postulacionService->getCurrents();
         return view('postulacion.index')->with('postulaciones', $currentPostulations);
     }
 
@@ -137,25 +147,13 @@ class PostulacionController extends Controller
     {
         $alumno = Postulacion::findOrFail($id)->alumno;
 
-        // Zip File Name
-        $zipFileName = "{$alumno->matricula}_" . Str::slug($alumno->fullName, '-');
-        $zipPath = public_path() . '/' . $zipFileName;
+        $zipPath = $this->fileService->createZipForAlumno($alumno);
 
-        $zip = new ZipArchive;
-        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
-            $docsSourcePath = storage_path('app/' . $this::STORE_PATH . $alumno->matricula);
-
-            $options = ['add_path' => '/', 'remove_all_path' => TRUE ];
-            $zip->addPattern("/\.*$/", $docsSourcePath, $options);
-            // dump($zip);
-            $zip->close();
-        }
-        // dump($zip);
-
-        // Create Download Response
-        $headers = ['Content-Type' => 'application/octet-stream'];
+        /* Create Download Response */
         if(file_exists($zipPath)){
-            return response()->download($zipPath, $zipFileName . ".zip", $headers);
+            $headers = ['Content-Type' => 'application/octet-stream'];
+            return response()->download($zipPath, basename($zipPath) . ".zip", $headers)
+                ->deleteFileAfterSend(true);
         }
 
         return view('createZip');

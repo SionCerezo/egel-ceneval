@@ -10,7 +10,6 @@ $user = $postulacion->alumno;
 
         <x-slot name="title">{{ $title }}</x-slot>
         <x-slot name="subtitle">{{ $subtitle }}</x-slot>
-        <hr>
 
         {{-- Datos del Alumno --}}
         <div class="row">

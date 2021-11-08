@@ -14,73 +14,71 @@
 @section('body')
 {{-- <div class="blog-item post-item">
 </div> --}}
-<div class="container-fluid">
-    <x-cards.page>
-        <x-slot name="title">Lista de convocatorias</x-slot>
-        <x-slot name="subtitle">
-            To use add class <code>.bg-info .text-whit</code> in the
-            <code>&lt;thead&gt;</code>.
-        </x-slot>
-        <hr>
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="bg-primary text-white">
+<x-cards.page>
+    <x-slot name="title">Lista de convocatorias</x-slot>
+    <x-slot name="subtitle">
+        To use add class <code>.bg-info .text-whit</code> in the
+        <code>&lt;thead&gt;</code>.
+    </x-slot>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estatus</th>
+                    <th>Creado por:</th>
+                    <th>Fecha de creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($convocatorias as $convocatoria)
                     <tr>
-                        <th>Nombre</th>
-                        <th>Estatus</th>
-                        <th>Creado por:</th>
-                        <th>Fecha de creación</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($convocatorias as $convocatoria)
-                        <tr>
-                            <td>{{ $convocatoria->title }}</td>
-                            <td>
-                                <div class="btn-group dropup">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" id="btn-status-{{ $convocatoria->id }}"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ $convocatoria->status->value }}
-                                    </button>
-                                    <div class="dropdown-menu" x-placement="top-start"  id="drop-action-{{ $convocatoria->id }}""
-                                        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
-                                        <!-- Dropdown menu links -->
-                                        @foreach ($convocatoria->status->actions as $action)
-                                            @php $urlArgs = ['id'=>$convocatoria->id, 'status'=>$action['id']] @endphp
-                                            <a class="dropdown-item" href="{{ route('admin.convocatoria.update.status', $urlArgs) }}">
-                                                {{ $action['value'] }}
-                                            </a>
-                                        @endforeach
-                                    </div>
+                        <td>{{ $convocatoria->title }}</td>
+                        <td>
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" id="btn-status-{{ $convocatoria->id }}"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ $convocatoria->status->value }}
+                                </button>
+                                <div class="dropdown-menu" x-placement="top-start"  id="drop-action-{{ $convocatoria->id }}""
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
+                                    <!-- Dropdown menu links -->
+                                    @foreach ($convocatoria->status->actions as $action)
+                                        @php $urlArgs = ['id'=>$convocatoria->id, 'status'=>$action['id']] @endphp
+                                        <a class="dropdown-item" href="{{ route('admin.convocatoria.update.status', $urlArgs) }}">
+                                            {{ $action['value'] }}
+                                        </a>
+                                    @endforeach
                                 </div>
-                            </td>
-                            <td>
-                                {{ $convocatoria->author->name.' '.$convocatoria->author->pat_surname }}
-                            </td>
-                            <td>{{ $convocatoria->created_at->format(
-                                        property('dates.formats.convocatoria'));
-                            }}</td>
-                            <td>
-                                <a class="btn btn-link f-icon" href="">
-                                    <i class="fas fa-edit"></i>
-                                    {{-- <i class="fas fa-trash-alt"></i> --}}
-                                </a>
-                                <form method="POST" action="{{ route('admin.convocatoria.destroy', ['convocatorium'=>$convocatoria->id]) }}" style="display: inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link f-icon">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </x-cards.classic>
-</div>
+                            </div>
+                        </td>
+                        <td>
+                            {{ $convocatoria->author->name.' '.$convocatoria->author->pat_surname }}
+                        </td>
+                        <td>{{ $convocatoria->created_at->format(
+                                    property('dates.formats.convocatoria'));
+                        }}</td>
+                        <td>
+                            <a class="btn btn-link f-icon" href="">
+                                <i class="fas fa-edit"></i>
+                                {{-- <i class="fas fa-trash-alt"></i> --}}
+                            </a>
+                            <form method="POST" action="{{ route('admin.convocatoria.destroy', ['convocatorium'=>$convocatoria->id]) }}" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link f-icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</x-cards.classic>
 
 <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-sm">

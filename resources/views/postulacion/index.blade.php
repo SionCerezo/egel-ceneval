@@ -21,8 +21,8 @@
             To use add class <code>.bg-info .text-whit</code> in the
             <code>&lt;thead&gt;</code>.
         </x-slot>
-        <hr>
-        @if($postulaciones->isNotEmpty())
+
+        @if( $postulaciones->isNotEmpty() )
         <div class="table-responsive">
             <table class="table">
                 <thead class="bg-primary text-white">

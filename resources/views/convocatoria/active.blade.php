@@ -13,11 +13,9 @@
 
 @section('body')
 <div class="blog-item post-item">
-    <div class="container-fluid">
-        <x-cards.empty-page>
-            <x-cards.convocatoria :convocatoria="$convocatoria" />
-        </x-cards.empty-page>
-    </div>
+    <x-cards.empty-page>
+        <x-cards.convocatoria :convocatoria="$convocatoria" />
+    </x-cards.empty-page>
 </div>
 @endsection
 
