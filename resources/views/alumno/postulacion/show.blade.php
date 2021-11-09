@@ -1,9 +1,5 @@
 @extends('alumno.alumno-master')
 
-@php
-    $user = $postulacion->alumno;
-@endphp
-
 @section('alumno-breadcrumb-items')
 <li class="breadcrumb-item">
     <a class="text-muted">Postulaciones</a>
@@ -12,11 +8,21 @@
 @endsection
 
 @section('body')
-<x-cards.postulacion :user="$user" :files="$files">
-    <x-slot name="title">Postulación actual</x-slot>
-    <x-slot name="subtitle">
-        <a href="{{ route('alumno.home') }}">Detalle de la convocatoria</a>
-    </x-slot>
-    <x-slot name="titleDataSection">Mis datos:</x-slot>
-</x-cards.postulacion>
+    @isset($postulacion)
+        <x-cards.postulacion :postulacion="$postulacion" :files="$files">
+            <x-slot name="title">Postulación actual</x-slot>
+            <x-slot name="subtitle">
+                <a href="{{ route('alumno.home') }}">Detalle de la convocatoria</a>
+            </x-slot>
+            <x-slot name="titleDataSection">Mis datos:</x-slot>
+        </x-cards.postulacion>
+    @else
+        <x-cards.page>
+            <x-slot name="title">Postulación actual</x-slot>
+            <x-slot name="subtitle">
+                <a href="{{ route('alumno.home') }}">Ver convocatoria actual</a>
+            </x-slot>
+            <p>No tienes postulaciones activas en este momento.</p>
+        </x-cards.page>
+    @endisset
 @endsection
