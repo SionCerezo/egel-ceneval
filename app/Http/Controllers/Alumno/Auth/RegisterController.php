@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'email'       => ['required', 'string', 'email', 'max:'.$rules['email.max'], 'unique:users'],
             'telephone'   => ['required', 'string', 'max:'.$rules['telefono.max']],
             'password'    => ['required', 'string', 'min:8', 'max:'.$rules['password.max'], 'confirmed'],
-            'carrera_id'  => ['required', 'alpha_dash'],
+            'carrera_id'  => ['required', 'exists:carreras_catalog,id'],
         ]);
     }
 

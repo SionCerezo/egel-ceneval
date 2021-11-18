@@ -34,6 +34,17 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest:alumno')->except('logout');
+    }
+
+    /**
      * The user has been authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,16 +65,6 @@ class LoginController extends Controller
     {
         return UserHelpers::userHomePath();
     }
-    // /**
-    //  * Create a new controller instance.
-    //  *
-    //  * @return void
-    //  */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    //     //$this->middleware('guest:alumno')->except('logout');
-    // }
 
     public function customLogin(Request $request)
     {

@@ -42,7 +42,8 @@ class Error extends Component
     public function buildMessage(String $msg)
     {
         if( $this->elementName != $this->elementLabel ){
-            return Str::of($msg)->replaceFirst($this->elementName, $this->elementLabel);
+            $name = Str::of($this->elementName)->replace("-"," ")->replace("_", " ");
+            return Str::of($msg)->replaceFirst($name, $this->elementLabel);
         }
         return $msg;
     }

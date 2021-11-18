@@ -21,6 +21,7 @@ class AlumnoService {
         return optional( $convocatoria->postulaciones() )
             ->whereHas('alumno', function(Builder $query){
                 $query->where('id', fullUserAuth()->id);
+                // $query->where('id', auth()->user()->fullUser->id);
             })->first();
         // return fullUserAuth()->postulaciones()
         //          ->whereRelation('convocatoria', 'convocatorias.status_id','active')

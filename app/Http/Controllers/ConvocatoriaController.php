@@ -51,7 +51,7 @@ class ConvocatoriaController extends Controller
     {
         $convocatoria = new Convocatoria($request->all());
         $convocatoria->create_user_id = session('fulluser')->id;
-        $convocatoria->create_user_type = '';
+        $convocatoria->create_user_type = session('fulluser')::class;
         $convocatoria->status_id = 'inactive';
 
         $year = (new Carbon( $request->start_date ))->year;

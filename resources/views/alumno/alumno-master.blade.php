@@ -10,7 +10,7 @@
 @section('menu-items-perfil')
     <!--haremos uso de otro componente para los items de mi menu de usuario-->
     <x-item href="{{ route('alumno.edit',session('fulluser')->id) }}" data-feather="user">
-        My profile
+        Mi perfil
     </x-item>
 @endsection
 

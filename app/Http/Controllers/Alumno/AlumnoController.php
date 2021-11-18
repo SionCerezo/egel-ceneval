@@ -17,11 +17,15 @@ class AlumnoController extends Controller
 
     public function __construct(AlumnoService $alumnoService)
     {
+        $this->middleware('auth');
         $this->alumnoService = $alumnoService;
     }
 
     public function home()
     {
+        // dd(auth()->user());
+        // dd(auth()->user()->fullUser);
+        // dd(fullUserAuth());
         $convocatoria = Convocatoria::where('status_id','active')
             ->orderByDesc('created_at')->limit(1)->first();
 
@@ -43,6 +47,7 @@ class AlumnoController extends Controller
     {
         $alumno = Alumno::find($id);
         $user = User::where('user_id',$alumno->id)->get();
+        // dd(auth()->user());
         return view('alumno.update.edit',compact('user'))->with('carreras', Carrera::all()); //se debe retornar la vista y se le pasa el usuario logeado
     }
 

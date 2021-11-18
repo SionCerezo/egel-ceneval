@@ -1,0 +1,54 @@
++--------+-----------+------------------------------------------+----------------------------------+--------------------------------------------------------------------------+------------+
+| Domain | Method    | URI                                      | Name                             | Action                                                                   | Middleware |
++--------+-----------+------------------------------------------+----------------------------------+--------------------------------------------------------------------------+------------+
+|        | GET|HEAD  | /                                        |                                  | Closure                                                                  | web        |
+|        | GET|HEAD  | admin                                    | admin.home                       | App\Http\Controllers\AdminController@home                                | web        |
+|        | GET|HEAD  | admin/convocatoria                       | admin.convocatoria.index         | App\Http\Controllers\ConvocatoriaController@index                        | web        |
+|        | POST      | admin/convocatoria                       | admin.convocatoria.store         | App\Http\Controllers\ConvocatoriaController@store                        | web        |
+|        | GET|HEAD  | admin/convocatoria/active                | admin.convocatoria.active        | App\Http\Controllers\AdminController@retrieveConvovatorias               | web        |
+|        | GET|HEAD  | admin/convocatoria/create                | admin.convocatoria.create        | App\Http\Controllers\ConvocatoriaController@create                       | web        |
+|        | GET|HEAD  | admin/convocatoria/{convocatorium}       | admin.convocatoria.show          | App\Http\Controllers\ConvocatoriaController@show                         | web        |
+|        | PUT|PATCH | admin/convocatoria/{convocatorium}       | admin.convocatoria.update        | App\Http\Controllers\ConvocatoriaController@update                       | web        |
+|        | DELETE    | admin/convocatoria/{convocatorium}       | admin.convocatoria.destroy       | App\Http\Controllers\ConvocatoriaController@destroy                      | web        |
+|        | GET|HEAD  | admin/convocatoria/{convocatorium}/edit  | admin.convocatoria.edit          | App\Http\Controllers\ConvocatoriaController@edit                         | web        |
+|        | GET|HEAD  | admin/convocatoria/{id}/status/{status}  | admin.convocatoria.update.status | App\Http\Controllers\ConvocatoriaController@updateStatus                 | web        |
+|        | GET|HEAD  | alumno                                   | alumno.home                      | App\Http\Controllers\Alumno\AlumnoController@home                        | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | GET|HEAD  | alumno/postulacion                       | alumno.postulacion               | App\Http\Controllers\Alumno\AlumnoController@activePostulation           | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | GET|HEAD  | alumno/register                          | alumno.register                  | App\Http\Controllers\Alumno\Auth\RegisterController@showRegistrationForm | web        |
+|        |           |                                          |                                  |                                                                          | guest      |
+|        | POST      | alumno/register                          | alumno.                          | App\Http\Controllers\Alumno\Auth\RegisterController@register             | web        |
+|        |           |                                          |                                  |                                                                          | guest      |
+|        | GET|HEAD  | alumno/{id}/edit                         | alumno.edit                      | App\Http\Controllers\Alumno\AlumnoController@edit                        | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | PUT       | alumno/{id}/update                       | alumno.update                    | App\Http\Controllers\Alumno\AlumnoController@update                      | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | GET|HEAD  | api/user                                 |                                  | Closure                                                                  | api        |
+|        |           |                                          |                                  |                                                                          | auth:api   |
+|        | GET|HEAD  | aux                                      | aux                              | Closure                                                                  | web        |
+|        | GET|HEAD  | files/{file_id}                          | file.response                    | Closure                                                                  | web        |
+|        | GET|HEAD  | login                                    | login                            | App\Http\Controllers\Auth\LoginController@showLoginForm                  | web        |
+|        | POST      | login                                    |                                  | App\Http\Controllers\Auth\LoginController@login                          | web        |
+|        | POST      | logout                                   | logout                           | App\Http\Controllers\Auth\LoginController@logout                         | web        |
+|        | GET|HEAD  | password/confirm                         | password.confirm                 | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm      | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | POST      | password/confirm                         |                                  | App\Http\Controllers\Auth\ConfirmPasswordController@confirm              | web        |
+|        |           |                                          |                                  |                                                                          | auth       |
+|        | POST      | password/email                           | password.email                   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail    | web        |
+|        | GET|HEAD  | password/reset                           | password.request                 | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm   | web        |
+|        | POST      | password/reset                           | password.update                  | App\Http\Controllers\Auth\ResetPasswordController@reset                  | web        |
+|        | GET|HEAD  | password/reset/{token}                   | password.reset                   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm          | web        |
+|        | GET|HEAD  | postulacion                              | postulacion.index                | App\Http\Controllers\PostulacionController@index                         | web        |
+|        | POST      | postulacion                              | postulacion.store                | App\Http\Controllers\PostulacionController@store                         | web        |
+|        | GET|HEAD  | postulacion/create/{conv_id}             | postulacion.create               | App\Http\Controllers\PostulacionController@create                        | web        |
+|        | GET|HEAD  | postulacion/{postulacion}                | postulacion.show                 | App\Http\Controllers\PostulacionController@show                          | web        |
+|        | PUT|PATCH | postulacion/{postulacion}                | postulacion.update               | App\Http\Controllers\PostulacionController@update                        | web        |
+|        | DELETE    | postulacion/{postulacion}                | postulacion.destroy              | App\Http\Controllers\PostulacionController@destroy                       | web        |
+|        | GET|HEAD  | postulacion/{postulacion}/download-files | postulacion.download-files       | App\Http\Controllers\PostulacionController@downloadFiles                 | web        |
+|        | GET|HEAD  | postulacion/{postulacion}/edit           | postulacion.edit                 | App\Http\Controllers\PostulacionController@edit                          | web        |
+|        | GET|HEAD  | register                                 | register                         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm        | web        |
+|        |           |                                          |                                  |                                                                          | guest      |
+|        | POST      | register                                 |                                  | App\Http\Controllers\Auth\RegisterController@register                    | web        |
+|        |           |                                          |                                  |                                                                          | guest      |
++--------+-----------+------------------------------------------+----------------------------------+--------------------------------------------------------------------------+------------+

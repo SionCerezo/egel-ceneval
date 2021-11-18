@@ -1,16 +1,25 @@
+@if( $modifiers->has('with-error') && $modifiers->get('with-error')=='top' )
+    <x-forms.error element-name="{{ $name }}" element-label="{{ $label }}"/>
+@endif
+{{-- @dump(old($name)) --}}
 <div class="egel-form-group">
     <input
         class="form-control @error($name) is-invalid @enderror"
         type='{{ $type }}'
-        name="{{ $name }}"
-        id="{{ $name }}"
-        value="{{ $value = '' ? old($name) : $value }}"
-        placeholder="{{ $label }}"
-        data-toggle="tooltip" data-placement="top" data-original-title="{{ $label }}"
-        onfocus="checkIsInvalid(this)">
+        @attribute(name)
+        @attribute(id)
+        @attribute(placeholder, $label)
+        @attribute(value, old($name, $value))
+
+        @if( $modifiers->has('tooltip') )
+            data-toggle="tooltip" data-placement="{{ $modifiers->get('tooltip') }}" data-original-title="{{ $label }}"
+        @endif
+        @if( $modifiers->has('with-error') )
+            onfocus="checkIsInvalid(this)"
+        @endif
+        {{ $attributes }}
+    >
 </div>
-@error($name)
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $errorMessage($message) }}</strong>
-    </span>
-@enderror
+@if( $modifiers->has('with-error') && $modifiers->get('with-error')=='bottom' )
+    <x-forms.error element-name="{{ $name }}" element-label="{{ $label }}"/>
+@endif

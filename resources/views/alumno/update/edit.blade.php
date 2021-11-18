@@ -15,10 +15,10 @@
     <x-cards.page>
         <x-slot name="title">Actualización de datos</x-slot>
         <x-slot name="subtitle"></x-slot>
-        <hr>
+
         <div class="col-lg-12 col-md-12 bg-white">
             <div class="p-3">
-                <form class="mt-4" method="POST" action="{{route('alumno.update',auth()->user->id)}}">
+                <form class="mt-4" method="POST" action="{{route('alumno.update',auth()->user()->id)}}">
                     @csrf
                     @method('put')
                     <div class="row">

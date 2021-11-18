@@ -91,6 +91,6 @@ Route::get('/aux',function(){
     return view('ejempo');
 })->middleware('web')->name('aux');
 
-// Route::get('/ajax',function(){
-//     return view('ajax');
-// });
+Route::get('/close',function(){
+    return view('close-sesion');
+});
