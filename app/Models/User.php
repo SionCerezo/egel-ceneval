@@ -51,4 +51,24 @@ class User extends Authenticatable
     {
         return $this->morphTo(__FUNCTION__, 'user_type', 'user_id');
     }
+
+    /**
+     * Verify if the user is administrator.
+     *
+     * @return true if the model associeted to user_type is Admin, false otherwise.
+     */
+    public function isAdmin()
+    {
+        return $this->user_type == Admin::class;
+    }
+
+    /**
+     * Verify if the user is alumno.
+     *
+     * @return true if the model associeted to user_type is Alumno, false otherwise.
+     */
+    public function isAlumno()
+    {
+        return $this->user_type == Admin::class;
+    }
 }

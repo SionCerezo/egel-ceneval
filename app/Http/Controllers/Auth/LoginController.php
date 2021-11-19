@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -66,23 +67,60 @@ class LoginController extends Controller
         return UserHelpers::userHomePath();
     }
 
-    public function customLogin(Request $request)
+    /**
+     * @Override from AuthenticateUsers.
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+        $rules = [
+            'email' => 'required|email|exists:users',
+            'password' => 'required|min:6',
+        ];
+        $messages = ['email.exists'=> trans('passwords.user')];
+
+        $request->validate($rules, $messages);
+    }
+
+    /**
+     * @Override from AuthenticateUsers
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'password' => [trans('auth.password')],
         ]);
-
-        if ($this->guard('alumno')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended(route('alumno.home'));
-        }
-
-        $errorMsg = "Usuario y/o contraseña incorrecta, verifica tus datos";
-        return back()->withInput($request->only('email', 'remember'))->with('loginFail',$errorMsg);
     }
 
-    private function checkUserType(Request $request)
-    {
+    // private function checkUserType(Request $request)
+    // {
 
-    }
+    // }
+
+
+    // public function customLogin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'email'   => 'required|email',
+    //         'password' => 'required|min:6'
+    //     ]);
+
+    //     if ($this->guard('alumno')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+    //         return redirect()->intended(route('alumno.home'));
+    //     }
+
+    //     $errorMsg = "Usuario y/o contraseña incorrecta, verifica tus datos";
+    //     return back()->withInput($request->only('email', 'remember'))->with('loginFail',$errorMsg);
+    // }
 }

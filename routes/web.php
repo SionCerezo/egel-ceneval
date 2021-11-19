@@ -32,20 +32,6 @@ Route::get('/', function(){
 // Route::resource('convocatoria', ConvocatoriaController::class);
 Auth::routes();
 
-Route::prefix('/admin')->name('admin.')->group(function(){
-    Route::get('/', 'App\Http\Controllers\AdminController@home')->name('home');
-
-    Route::get('/convocatoria/active', 'App\Http\Controllers\AdminController@retrieveConvovatorias')
-        ->name('convocatoria.active');
-
-    Route::resource('convocatoria', ConvocatoriaController::class);
-    Route::get('/convocatoria/{id}/status/{status}', 'App\Http\Controllers\ConvocatoriaController@updateStatus')
-        ->name('convocatoria.update.status');
-    // Route::get('/convocatorias/create', 'ConvocatoriaController@create')->name('convocatoria.create');
-
-
-});
-
 Route::prefix('/alumno')->name('alumno.')->namespace('App\\Http\\Controllers\\Alumno')->group(function(){
     Route::view('/', 'alumno.master')->name('home');
     Route::get('/', 'AlumnoController@home')->name('home');

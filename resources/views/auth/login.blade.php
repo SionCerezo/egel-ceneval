@@ -23,13 +23,13 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label class="text-dark" for="email">Usuario</label>
-                        <x-forms.input type="text" label="E-mail" name="email"/>
+                        <x-forms.input type="text" label="E-mail" name="email" with-error/>
                     </div>
                 </div>
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label class="text-dark" for="password">Password</label>
-                        <x-forms.input type="password" label="Contraseña" name="password"/>
+                        <x-forms.input type="password" label="Contraseña" name="password" with-error/>
                     </div>
                 </div>
                 <div class="col-lg-12 text-center">
