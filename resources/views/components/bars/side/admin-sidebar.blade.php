@@ -16,12 +16,6 @@
             <span class="hide-menu">Actuales</span>
         </a>
     </li>
-    {{-- <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"
-            aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
-                class="hide-menu">Chat</span></a></li>
-    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
-            aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-                class="hide-menu">Calendar</span></a></li> --}}
 
     <li class="list-divider"></li>
     <li class="nav-small-cap"><span class="hide-menu">Convocatorias</span></li>
@@ -34,19 +28,19 @@
         </a>
     </li>
 
-    {{-- Historial de Convocatorias --}}
-    <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('admin.convocatoria.index') }}" aria-expanded="false">
-            <i data-feather="list" class="feather-icon"></i>
-            <span class="hide-menu">Historial</span>
-        </a>
-    </li>
-
     {{-- Nueva convocatoria --}}
     <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('admin.convocatoria.create') }}" aria-expanded="false">
             <i data-feather="plus" class="feather-icon"></i>
             <span class="hide-menu">Nueva convocatoria</span>
+        </a>
+    </li>
+
+    {{-- Historial de Convocatorias --}}
+    <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('admin.convocatoria.index') }}" aria-expanded="false">
+            <i data-feather="list" class="feather-icon"></i>
+            <span class="hide-menu">Historial</span>
         </a>
     </li>
 

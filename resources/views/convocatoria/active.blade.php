@@ -6,7 +6,7 @@
 
 @section('admin-breadcrumb-items')
 <li class="breadcrumb-item">
-    <a href="{{ route('admin.convocatoria.active') }}" class="text-muted">Convocatoria</a>
+    <a href="{{ route('admin.convocatoria.index') }}" class="text-muted">Convocatorias</a>
 </li>
 <li class="breadcrumb-item text-muted active" aria-current="page">Active</li>
 @endsection

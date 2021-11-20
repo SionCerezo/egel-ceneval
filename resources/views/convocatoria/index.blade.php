@@ -5,15 +5,10 @@
 @endsection
 
 @section('admin-breadcrumb-items')
-<li class="breadcrumb-item">
-    <a href="{{ route('admin.convocatoria.active') }}" class="text-muted">Convocatoria</a>
-</li>
 <li class="breadcrumb-item text-muted active" aria-current="page">Convocatorias</li>
 @endsection
 
 @section('body')
-{{-- <div class="blog-item post-item">
-</div> --}}
 <x-cards.page>
     <x-slot name="title">Lista de convocatorias</x-slot>
     <x-slot name="subtitle">

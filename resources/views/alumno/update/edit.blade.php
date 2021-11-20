@@ -1,6 +1,6 @@
 @extends('alumno.alumno-master')
 
-@section('Title','Actualizacion de datos')
+@section('Title','Actualización de datos')
 
 @section('css')
 <style>
@@ -8,6 +8,13 @@
     margin-top: 1.5rem;
 }
 </style>
+@endsection
+
+@section('alumno-breadcrumb-items')
+<li class="breadcrumb-item text-muted">
+    Perfil
+</li>
+<li class="breadcrumb-item text-muted active" aria-current="page">Edición</li>
 @endsection
 
 @section('body')

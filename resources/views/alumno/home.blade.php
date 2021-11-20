@@ -4,13 +4,6 @@
 <link href="{{ asset('css/egel/components/cards/convocatoria.css') }}" rel="stylesheet">
 @endsection
 
-@section('alumno-breadcrumb-items')
-<li class="breadcrumb-item">
-    <a href="{{ route('admin.convocatoria.active') }}" class="text-muted">Convocatoria</a>
-</li>
-<li class="breadcrumb-item text-muted active" aria-current="page">Convocatorias</li>
-@endsection
-
 @section('body')
 <div class="blog-item post-item">
     <x-cards.empty-page>

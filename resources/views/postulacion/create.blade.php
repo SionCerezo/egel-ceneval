@@ -6,7 +6,7 @@
 
 @section('alumno-breadcrumb-items')
 <li class="breadcrumb-item">
-    <a href="{{ route('admin.convocatoria.active') }}" class="text-muted">Postulacion</a>
+    <a href="{{ route('alumno.postulacion') }}" class="text-muted">Postulaciones</a>
 </li>
 <li class="breadcrumb-item text-muted active" aria-current="page">Nueva</li>
 @endsection
