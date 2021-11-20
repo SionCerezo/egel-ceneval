@@ -47,11 +47,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::prefix('admin')
-                ->name('admin.')
-                ->middleware(['web','auth','is.admin'])
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web/admin.php'));
+            $this->configAdminRoutes();
+            $this->configAlumnRoutes();
         });
     }
 
@@ -65,5 +62,29 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    /**
+     * Define la configuracion que se aplicara a las rutas del administrador.
+     */
+    private function configAdminRoutes()
+    {
+        Route::prefix('admin')
+            ->name('admin.')
+            ->middleware(['web','auth','is.admin'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/admin.php'));
+    }
+
+    /**
+     * Define la configuracion que se aplicara a las rutas del alumno.
+     */
+    private function configAlumnRoutes()
+    {
+        Route::prefix('alumno')
+            ->name('alumno.')
+            ->middleware(['web','auth','is.alumno'])
+            ->namespace("App\Http\Controllers")
+            ->group(base_path('routes/web/alumno.php'));
     }
 }

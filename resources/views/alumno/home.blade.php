@@ -20,7 +20,7 @@
         @if ( !$isRegistred )
             <hr/>
             <div class="text-center">
-                <a href="{{ route('postulacion.create', ['conv_id' => $convocatoria->id]) }}" class="btn btn-primary">
+                <a href="{{ route('alumno.postulacion.create', ['conv_id' => $convocatoria->id]) }}" class="btn btn-primary">
                     Registrarse
                 </a>
             </div>

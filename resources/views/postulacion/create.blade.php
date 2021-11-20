@@ -18,10 +18,18 @@
         <x-slot name="subtitle"></x-slot>
         <hr>
 
-        <form class="mt-4" method="POST" action="{{ route('postulacion.store') }}" enctype="multipart/form-data">
+        <form class="mt-4" method="POST" action="{{ route('alumno.postulacion.store') }}" enctype="multipart/form-data">
             @csrf
             @dump($errors)
             <input type="hidden" name="convocatoria_id" value="{{ $convocatoria_id }}">
+            @error('convocatoria_id')
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>Error - </strong> No se asoció ninguna convocatoria a esta postulación
+            </div>
+            @enderror
 
             <div class="row">
                 <div class="col-lg-8">

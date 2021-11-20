@@ -17,7 +17,7 @@ class AlumnoController extends Controller
 
     public function __construct(AlumnoService $alumnoService)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this->alumnoService = $alumnoService;
     }
 

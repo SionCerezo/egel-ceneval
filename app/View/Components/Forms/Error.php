@@ -16,10 +16,10 @@ class Error extends Component
      *
      * @return void
      */
-    public function __construct($elementName, $elementLabel)
+    public function __construct($elementName, $elementLabel=null)
     {
         $this->elementName = $elementName;
-        $this->elementLabel = $elementLabel;
+        $this->elementLabel = $elementLabel ?? $elementName;
     }
 
     /**

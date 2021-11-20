@@ -69,6 +69,6 @@ class User extends Authenticatable
      */
     public function isAlumno()
     {
-        return $this->user_type == Admin::class;
+        return $this->user_type == Alumno::class;
     }
 }
