@@ -47,6 +47,14 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'app' => [
+            'driver' => 'single',
+            // TODO Falta definir el formato de log personalizado, o eliminar la sig linea
+            // 'tap'   => [App\Logging\CustomFormatter::class],
+            'path'  => storage_path('logs/application.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

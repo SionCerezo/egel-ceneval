@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoggerRequest;
+use App\Http\Requests\PostulacionRequest;
 use App\Models\Alumno;
-use App\Models\File;
 use App\Models\Postulacion;
 use App\Services\FileService;
 use App\Services\PostulacionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use ZipArchive;
 
 class PostulacionController extends Controller
 {
@@ -63,35 +61,12 @@ class PostulacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'convocatoria_id' => ['required', 'exists:convocatorias,id'],
-            'documents.*' => ['required','file','mimes:txt,pdf,docx,jpg,jpeg,png,bmp,gif,svg,webp']
-        ]);
+    public function store(PostulacionRequest $request) {
 
-        $postulacion = new Postulacion($request->all());
-        $postulacion->alumno_id = fullUserAuth()->id;
-        $postulacion->status_id = 'pending';
+        $this->postulacionService->save($request->all(), $request->documents);
 
-        $paths = collect();
-        $prefixFile = fullUserAuth()->matricula."_";
-        foreach($request->documents as $document){
-            $fileName = $prefixFile . $document->getClientOriginalName();
-            $path = $this::STORE_PATH . fullUserAuth()->matricula;
-            $paths->push( $document->storeAs($path, $fileName) );
-        }
-
-        $fileModels = $paths->map(function($path, $key){
-            return new File(['path' => $path]);
-        });
-
-        DB::transaction(function () use ($postulacion, $fileModels) {
-            $postulacion->save();
-            $postulacion->files()->saveMany($fileModels);
-        });
-
-        return redirect()->route('alumno.home')->with('success', true);
+        return redirect()->route('alumno.postulacion')
+            ->with('create-success', trans('messages.postulation.create-success'));
     }
 
     /**

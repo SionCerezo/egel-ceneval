@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Custom\ApplicationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -41,11 +43,30 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
-        {
+        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException){
             return response(['success' => false, 'status' => 404]);
+        }
+        elseif ($e instanceof \App\Exceptions\Custom\ApplicationException){
+            $this->handleApplicationException($e);
+            return back()->with('error', $e->getUserMessage());
         }
 
         return parent::render($request, $e);
+    }
+
+    /**
+     * Metodo para manejar una ApplicationException. Este handler manda un log del
+     * error agregando los campos de la excepcion en formato JSON al mensaje de error.
+     */
+    private function handleApplicationException(ApplicationException $e) {
+        $args = ['msg' => $e->getMessage(),
+            'code' => $e->getCode(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'cause'=> $e->getPrevious()->getMessage()
+        ];
+        Log::channel('app')
+            ->error('ApplicationException: '.json_encode($args),
+                ['user' => $e->getCurrentUser()]);
     }
 }

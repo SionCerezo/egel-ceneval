@@ -1,0 +1,3 @@
+Codigos de Error
+
+001 - al crear postulacion

@@ -16,20 +16,23 @@
     <x-cards.page>
         <x-slot name="title">Registro para el exámen</x-slot>
         <x-slot name="subtitle"></x-slot>
-        <hr>
 
         <form class="mt-4" method="POST" action="{{ route('alumno.postulacion.store') }}" enctype="multipart/form-data">
             @csrf
-            @dump($errors)
+
+            {{-- <input type="hidden" name="convocatoria_id" value="100"> --}}
             <input type="hidden" name="convocatoria_id" value="{{ $convocatoria_id }}">
             @error('convocatoria_id')
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <strong>Error - </strong> No se asoció ninguna convocatoria a esta postulación
-            </div>
+            <x-alerts.alert type='danger'>
+                <strong>Error - </strong> {{ $message }}
+            </x-alerts.alert>
             @enderror
+
+            @if( session('error') != null )
+            <x-alerts.alert type='danger'>
+                <strong>Error - </strong> {{ session('error') }}
+            </x-alerts.alert>
+            @endif
 
             <div class="row">
                 <div class="col-lg-8">
@@ -93,6 +96,19 @@
                             <label class="custom-file-label" for="inputGroupFile01">Seleccionar archivos...</label>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    @if(session()->has('fileMessages') )
+                        <ul>
+                            @foreach (session('fileMessages') as $fileError)
+                                <li>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $fileError }}</strong>
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endisset
                 </div>
             </div>
 

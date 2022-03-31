@@ -9,6 +9,11 @@
 
 @section('body')
     @isset($postulacion)
+        @if( session('create-success') != null )
+        <x-modals.message type='success'>
+            <p class="mt-3">{{ session('create-success') }}</p>
+        </x-modals.message>
+        @endif
         <x-cards.postulacion :postulacion="$postulacion" :files="$files">
             <x-slot name="title">Postulación actual</x-slot>
             <x-slot name="subtitle">
@@ -25,4 +30,10 @@
             <p>No tienes postulaciones activas en este momento.</p>
         </x-cards.page>
     @endisset
+@endsection
+
+@section('js')
+<script type="text/javascript">
+    $("#success-alert-modal").modal();
+</script>
 @endsection
