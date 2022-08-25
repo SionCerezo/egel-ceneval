@@ -1,5 +1,6 @@
 
-<div id="success-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="{{ $attributes['id'] }}"
+        style="display: {{ $attributes['show']=='false' ? 'none' : 'block'}}">
     <div class="modal-dialog modal-sm">
         <div class="modal-content modal-filled bg-{{$attributes['type']}}">
             <div class="modal-body p-4">

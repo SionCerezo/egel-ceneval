@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ConvocatoriaRequest;
 use App\Models\Convocatoria;
 use App\Models\Periodo;
-use App\Models\PeriodoCatalog;
 use App\Models\Status;
 use Carbon\Carbon;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -14,12 +14,24 @@
             <p class="mt-3">{{ session('create-success') }}</p>
         </x-modals.message>
         @endif
-        <x-cards.postulacion :postulacion="$postulacion" :files="$files">
+        <x-cards.postulacion :postulacion="$postulacion" :files="$files"  :comments="$comments">
             <x-slot name="title">Postulación actual</x-slot>
             <x-slot name="subtitle">
                 <a href="{{ route('alumno.home') }}">Detalle de la convocatoria</a>
             </x-slot>
+
             <x-slot name="titleDataSection">Mis datos:</x-slot>
+
+            <x-slot name="footer">
+                <div class="egel-float-right">
+                    <div class="egel-section-body">
+                        <hr/>
+                        <button type="button" class="btn btn-outline-success">
+                            <i class="fa fa-check"></i> Aprobar
+                        </button>
+                    </div>
+                </div>
+            </x-slot>
         </x-cards.postulacion>
     @else
         <x-cards.page>
@@ -33,7 +45,12 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('template/dist/js/custom.min.js') }}"></script>
+<script src="{{ asset('js/utils/CustomDate.js') }}"></script>
+<script src="{{ asset('js/postulacion/chat.js') }}"></script>
+
 <script type="text/javascript">
     $("#success-alert-modal").modal();
+    initChat('{{ csrf_token() }}', {{$postulacion->id}},'{{ route("comment.store") }}');
 </script>
 @endsection

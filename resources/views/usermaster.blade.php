@@ -343,9 +343,9 @@
     <script src="{{ asset('template/dist/js/app-style-switcher.js') }}"></script>
     <script src="{{ asset('template/dist/js/feather.min.js') }}"></script>
     <script src="{{ asset('template/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('template/dist/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('template/dist/js/sidebarmenu.js') }}"></script> --}}
     <!--Custom JavaScript -->
-    <script src="{{ asset('template/dist/js/custom.min.js') }}"></script> --}}
+    <script src="{{ asset('template/dist/js/custom.min.js') }}"></script>
     @yield('js')
 </body>
 

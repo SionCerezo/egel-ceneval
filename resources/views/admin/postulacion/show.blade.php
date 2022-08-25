@@ -1,6 +1,7 @@
 @extends('admin.admin-master')
 
 @section('css')
+{{-- <link href="{{ asset('vendor/perfect-scrollbar/css/perfect-scrollbar.min.css')}}" rel="stylesheet"> --}}
 <style>
 /* Deberia irse al gral */
 .egel-float-right {
@@ -9,6 +10,9 @@
 }
 .egel-section-body {
     padding: 25px;
+}
+.comment-box {
+    padding: 5px;
 }
 </style>
 @endsection
@@ -21,7 +25,7 @@
 @endsection
 
 @section('body')
-<x-cards.postulacion :postulacion="$postulacion" :files="$files" >
+<x-cards.postulacion :postulacion="$postulacion" :files="$files" :comments="$comments">
 
     <x-slot name="title">Postulación de {{ $postulacion->alumno->full_name }}</x-slot>
     <x-slot name="subtitle">Información proporcionada por el alumno</x-slot>
@@ -32,10 +36,26 @@
             <div class="egel-section-body">
                 <hr/>
                 <button type="button" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i> Aprobar
+                    <i class="fa fa-check"></i> Editar
                 </button>
             </div>
         </div>
     </x-slot>
 </x-cards.postulacion>
+@endsection
+
+@section('js')
+<script src="{{ asset('template/dist/js/custom.min.js') }}"></script>
+<script src="{{ asset('js/utils/CustomDate.js') }}"></script>
+<script src="{{ asset('template/assets/libs/moment/min/moment-with-locales.min.js') }}"></script>
+<script src="{{ asset('js/postulacion/chat.js') }}"></script>
+
+<script type="text/javascript">
+    initChat({
+        csrfToken     : '{{ csrf_token() }}',
+        postulationId : {{$postulacion->id}},
+        storeUrl      : '{{ route("comment.store") }}',
+        retrieveUrl   : '{{ route("postulacion.comments", ["postulacion"=>$postulacion->id]) }}'
+    });
+</script>
 @endsection

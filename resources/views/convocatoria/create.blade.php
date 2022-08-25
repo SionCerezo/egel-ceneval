@@ -107,6 +107,7 @@
 <script src="{{ asset('js/ckeditor4/ckeditor.js') }}"></script>
 <script src="{{ asset('js/utils/CustomDate.js') }}"></script>
 <script src="{{ asset('js/utils/form-validations.js') }}"></script>
+<script src="{{ asset('template/assets/libs/moment/min/moment-with-locales.min.js') }}"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {

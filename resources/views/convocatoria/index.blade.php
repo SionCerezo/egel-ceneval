@@ -73,7 +73,7 @@
             </tbody>
         </table>
     </div>
-</x-cards.classic>
+</x-cards.page>
 
 <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-sm">

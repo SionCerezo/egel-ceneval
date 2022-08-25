@@ -49,6 +49,7 @@ class CatalogsSeeder extends Seeder
         DB::table('status_catalog')->delete();
 
         Status::create(['id'=>'active', 'value'=>'Activa'])->save();
+        Status::create(['id'=>'inactive', 'value'=>'Inactiva'])->save();
         Status::create(['id'=>'pending', 'value'=>'Pendiente'])->save();
         Status::create(['id'=>'close', 'value'=>'Cerrada'])->save();
         // Añadir las que falten ...

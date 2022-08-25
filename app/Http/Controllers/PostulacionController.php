@@ -81,7 +81,8 @@ class PostulacionController extends Controller
         $userType = Auth::user()->user_type == Alumno::class ? 'alumno' : 'admin';
 
         return view("$userType.postulacion.show")->with('postulacion', $postulacion)
-                ->with('files', $postulacion->files);
+                ->with('files', $postulacion->files)
+                ->with('comments', $postulacion->comments()->orderByDesc('created_at')->get());
     }
 
     /**
@@ -132,5 +133,27 @@ class PostulacionController extends Controller
         }
 
         return view('createZip');
+    }
+
+    /**
+     * Recupera los comentarios de una postulacion.
+     *
+     * @param int id  El id de la postulacion de la que se van a recuperar los comentarios
+     * @return string Un json con los cometarios de la postulacion.
+     */
+    public function getComments($id) {
+        $postulacion = Postulacion::find($id);
+        $userId = auth()->user()->id;
+
+        $responseData = $postulacion->comments()
+            ->orderByDesc('created_at')->get()
+            ->map(function ($comment) use($userId) {
+                $comment->isSelf = $comment->user_id == $userId;
+                return $comment;
+            });
+
+        $response = ['success'=>true, 'data' => $responseData];
+
+        return response()->json($response);
     }
 }

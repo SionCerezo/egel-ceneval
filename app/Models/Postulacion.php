@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Postulacion extends Model
 {
@@ -52,5 +53,13 @@ class Postulacion extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    /**
+     * Get the comments for the postulacion.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

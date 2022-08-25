@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Http\Controllers\PostulacionController;
-use App\Models\File;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use ZipArchive;
 

@@ -38,9 +38,13 @@ class AlumnoController extends Controller
     public function activePostulation()
     {
         $postulacion = $this->alumnoService->getActivePostulation();
+        $comments = optional($postulacion, fn ($post) =>
+                        $post->comments()->orderByDesc('created_at')->get()
+                    );
 
         return view("alumno.postulacion.show")->with('postulacion', $postulacion)
-                ->with('files', optional($postulacion)->files);
+                ->with('files', optional($postulacion)->files)
+                ->with('comments', $comments);
     }
 
     public function edit($id)

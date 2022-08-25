@@ -36,6 +36,8 @@ Route::resource('/postulacion', PostulacionController::class)->except(['create',
 Route::prefix('/postulacion')->name('postulacion.')->namespace('App\\Http\\Controllers')->group(function(){
     Route::get('/{postulacion}/download-files', 'PostulacionController@downloadFiles')
         ->name('download-files');
+    Route::get('/{postulacion}/comments', 'PostulacionController@getComments')
+        ->name('comments');
 });
 
 /**
@@ -48,6 +50,15 @@ Route::get('/files/{file_id}', function ($file_id){
 })->name('file.response')->where('file_id', '.*');
 
 /**
+ * * Comments
+ */
+Route::prefix('/comment')->name('comment.')->middleware('auth')
+->namespace('App\\Http\\Controllers')
+->group(function(){
+    Route::post('/', 'CommentController@store')->name('store');
+});
+
+/**
  * ! Rutas de ayuda, eliminarlas al final
  */
 Route::get('/aux',function(){
@@ -57,3 +68,5 @@ Route::get('/aux',function(){
 Route::get('/close',function(){
     return view('close-sesion');
 });
+
+// Route::post('/', 'CommentController@store')->name('store');

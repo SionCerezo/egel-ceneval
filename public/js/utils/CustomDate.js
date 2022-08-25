@@ -42,4 +42,10 @@ class CustomDate extends Date {
 
         return dateTokens[2] + '-' + month + '-' + day;
     }
+
+    getTimeAsString(){
+        let minutes = (this.getMinutes() + '').padStart(2, '0');
+        let hours = (this.getHours() + '').padStart(2, '0');
+        return hours + ':' + minutes;
+    }
 }
